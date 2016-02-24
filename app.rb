@@ -24,6 +24,7 @@ def get_view(view,path = 'auth')
       'new_ticket' => :new_ticket,
       'notification' => :notification,
       'users' => :users,
+      'new_user' => :new_user,
     }
   
 }
@@ -54,7 +55,7 @@ get '/auth/:view' do
   if session[:login]
     redirect '/dashboard'
   end
-  
+
   view = get_view params[:view], "guest"
   erb view
 end
