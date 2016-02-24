@@ -27,6 +27,11 @@ def get_view view
   :error
 end
 
+get '/' do
+  session!
+  erb :index
+end
+
 get '/:view' do
   session!
   view = get_view params[:view]
@@ -43,7 +48,7 @@ post '/login' do
   if params[:email]
     session_start!
     session[:login] = true
-    redirect '/'
+    redirect '/dashboard'
   else
     redirect '/login'
   end

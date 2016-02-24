@@ -29,6 +29,9 @@ html, body {
 .pad{
   padding:5px;
 }
+.pad10{
+  padding: 10px;
+}
 
 .error-page{
   background: url('../images/404_bg.jpg');

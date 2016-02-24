@@ -2,39 +2,26 @@
 <div class="center centralize" style="max-width: 500px">
 <h3>User Signup</h3>
 
-<div class="row">
+<div class="row card">
   <div class="row">
     <form class="col s12" method="post">
       <div class="row">
-        <div class="input-field">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="name" type="text" class="validate" required>
-          <label for="icon_prefix">Name</label>
-        </div>
-        <div class="input-field">
-          <i class="material-icons prefix">my_location</i>
-          <input id="location" type="text" class="validate" required>
-          <label for="icon_prefix">Location</label>
-        </div>
-        <div class="input-field">
-          <i class="material-icons prefix">email</i>
-          <input id="email" type="email" class="validate" required>
-          <label for="icon_prefix">Email</label>
-        </div>
-        <div class="input-field">
-          <i class="material-icons prefix">vpn_key</i>
-          <input id="password" type="password" class="validate" required>
-          <label for="icon_telephone">Password</label>
-        </div>
-         <div class="input-field">
-          <i class="material-icons prefix">vpn_key</i>
-          <input id="confirm_password" type="password" class="validate" required>
-          <label for="icon_telephone">Confirm Password</label>
-        </div>
+        
+        <%= Guru::MaterialHtml::input_field('text','name','Name','',{'required'=>'required','icon'=>'account_circle'}) %>     
+
+        <%= Guru::MaterialHtml::input_field('text','location','Location','',{'required'=>'required','icon'=>'my_location'}) %>
+
+        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email'}) %>
+
+      <%= Guru::MaterialHtml::input_field('password','password','Password','',{'required'=>'required','icon'=>'vpn_key'}) %>
+
+      <%= Guru::MaterialHtml::input_field('password','confirm_password','Confirm Password','',{'required'=>'required','icon'=>'vpn_key'}) %>
+
         <div class="input-field">
           <p>Already a member? <a href="/login">click here to login</a></p>
-          <input type="submit" class="waves-effect waves-light btn right" value="Create Account">
         </div>
+
+        <%= Guru::MaterialHtml::submit('Create Account','',{'class'=>'waves-effect waves-light right'}) %>
       </div>
     </form>
   </div>
