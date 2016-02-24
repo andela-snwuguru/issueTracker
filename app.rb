@@ -46,8 +46,8 @@ get '/:view' do
 end
 
 get '/user/logout' do
-  session_end!
   session[:login] =false 
+  session_end!
   redirect '/login'
 end
 
@@ -62,7 +62,9 @@ end
 
 post '/login' do
   if params[:email]
-   return '["message":"correct request"]'
+    session_start!
+    session[:login] = true
+   return {login: true}.to_json
   else
     return {'message'=>'Invalid request'}.to_json
   end
