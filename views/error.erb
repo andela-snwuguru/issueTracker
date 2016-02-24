@@ -1,3 +1,7 @@
-<h1>404</h1>
-
-<p>The page you're after doesn't exist OR something went wrong.</p>
+<div class="error-page row" style="padding-top:30vh">
+<h2 class="centralize center">
+  <img src="/images/404.png">
+</h2>
+  <p class="white-text center" style="font-weight:bold">The page you're after doesn't exist OR something went wrong.</p>
+  <p class="white-text center"><a href="<%= session[:login] ? '/dashboard' : '/login' %>" class="btn"> Back to <%= session[:login] ? 'dashboard': 'home' %></a></p>
+</div>
