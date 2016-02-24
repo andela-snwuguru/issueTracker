@@ -40,3 +40,8 @@ html, body {
   height: 100vh;
   min-height: 700px;
 }
+
+.alert{
+  border-radius: 6px;
+  padding:10px;
+}

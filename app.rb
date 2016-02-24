@@ -62,10 +62,8 @@ end
 
 post '/login' do
   if params[:email]
-    session_start!
-    session[:login] = true
-    redirect '/dashboard'
+   return '["message":"correct request"]'
   else
-    redirect '/login'
+    return {'message'=>'Invalid request'}.to_json
   end
 end
