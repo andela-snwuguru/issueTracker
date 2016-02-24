@@ -8,6 +8,7 @@ set :session_fail, '/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
 require_relative 'src/authentication'
+require_relative 'src/material_html'
 
 def get_view view
   @views = {
@@ -18,6 +19,7 @@ def get_view view
   'recover' => :recover,
   'error' => :error,
   'ticket' => :ticket,
+  'new_ticket' => :new_ticket,
 }
   @views.each{|key,value|  
     return @views[view] if key == view
@@ -29,6 +31,7 @@ get '/:view' do
   session!
   view = get_view params[:view]
   erb view
+  
 end
 
 get '/logout' do

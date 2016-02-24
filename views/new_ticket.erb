@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+    
+    <div class="card pad">
+    <h4>Raise Ticket</h4>
+      <div class="row">
+        <form class="col s12">
+         <%= Guru::MaterialHtml::text_field('title','Title','',{'required'=>'required'}) %>
+         <%= Guru::MaterialHtml::text_area('description','Issue Description','',{'required'=>'required'}) %>
+         <%= Guru::MaterialHtml::submit('Create','',{'class'=>'right'}) %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
