@@ -35,6 +35,7 @@
           <a href="/dashboard" class="brand-logo">Ticket Issue Tracker</a>
           <ul class="right hide-on-med-and-down">
           <% if session[:login] %>
+            <li><a href="/notification"><i class="material-icons">comment</i></a></li>
             <li><a href="#" data-activates="slide-out" id="menu"><i class="material-icons">more_vert</i></a></li>
             <% end %>
           </ul>
@@ -45,7 +46,7 @@
             <li><a href="/ticket">Manage Tickets</a></li>
             <li><a href="/department">Manage Department</a></li>
             <li><a href="/users">Manage Users</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/user/logout"><i class="material-icons">power_settings_new</i> Logout</a></li>
           </ul>
   <div class="row">
        <%= yield %>

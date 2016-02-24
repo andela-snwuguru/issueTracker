@@ -4,25 +4,31 @@ require 'json'
 require 'sanitize'
 require 'sinatra/session'
 
-set :session_fail, '/login'
+set :session_fail, '/auth/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
 require_relative 'src/authentication'
 require_relative 'src/material_html'
 
-def get_view view
+def get_view(view,path = 'auth')
   @views = {
-  'dashboard'=> :index,
-  'department' => :department,
-  'login' => :login,
-  'signup' => :signup,
-  'recover' => :recover,
-  'error' => :error,
-  'ticket' => :ticket,
-  'new_ticket' => :new_ticket,
+    'guest'=>{
+      'login' => :login,
+      'signup' => :signup,
+      'recover' => :recover,
+      },
+    'auth'=>{
+      'dashboard'=> :index,
+      'department' => :department,
+      'ticket' => :ticket,
+      'new_ticket' => :new_ticket,
+      'notification' => :notification,
+      'users' => :users,
+    }
+  
 }
-  @views.each{|key,value|  
-    return @views[view] if key == view
+  @views[path].each{|key,value|  
+    return @views[path][view] if key == view
   }
   :error
 end
@@ -36,12 +42,21 @@ get '/:view' do
   session!
   view = get_view params[:view]
   erb view
-  
 end
 
-get '/logout' do
+get '/user/logout' do
   session_end!
-  redirect '/'
+  session[:login] =false 
+  redirect '/login'
+end
+
+get '/auth/:view' do
+  if session[:login]
+    redirect '/dashboard'
+  end
+  
+  view = get_view params[:view], "guest"
+  erb view
 end
 
 post '/login' do

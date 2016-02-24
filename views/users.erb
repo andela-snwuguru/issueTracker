@@ -1,0 +1,17 @@
+<div class="container">
+<div class="row">
+  <h4>Manage Users</h4>
+</div>
+
+<%= Guru::MaterialHtml.table(
+  ['name','email','location'],
+  [
+    {'name'=>'Nwuguru Sunday','email'=>'sunday@gmail.com','location'=>'Lagos, Nigeria','id'=>1},
+    {'name'=>'Goodman Sunday','email'=>'friday@gmail.com','location'=>'Lagos, Nigeria','id'=>2},
+  ],
+  '',
+  {'delete'=>{'url'=>'delete/ticket'},'update'=>{'url'=>'update/ticket'}},
+  {'class'=>'striped responsive-table'}
+  ) %>
+
+</div>
