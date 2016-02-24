@@ -18,11 +18,6 @@ get '/login' do
   if session?
     redirect '/'
   else
-    @fb_root = FirebaseUtil.new
-
-    #testing firebase storage
-    @data = @fb_root.set 'department', {title: 'success',description: 'making sure we succeed'}
-    
     'login here'
   end
 end

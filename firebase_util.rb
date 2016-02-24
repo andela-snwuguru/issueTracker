@@ -25,4 +25,5 @@ class FirebaseUtil
   def push path, data
     @fb_root.push("/#{path}", data)
   end
+  
 end
