@@ -10,7 +10,6 @@ set :session_secret, 'ATincketdIsseueTralckera'
 get '/' do
 session!
   erb :index
-  
 end
 
 get '/login' do
