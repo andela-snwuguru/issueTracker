@@ -52,6 +52,16 @@ module Guru
       }
     end
 
+    def self.button(value, name = '', html_options = {})
+     %{
+      <div class="row">
+        <div class="input-field col s12">
+        <button type='button' id='#{name}' class="btn #{html_options['class']}" #{self.get_html_option(html_options)}>#{value}</button>
+        </div>
+      </div>
+      }
+    end
+
     def self.table(header, data, footer = [],action_buttons = {}, html_options = {})
       table = "<table class='#{html_options['class']}'>"
       table << self.get_table_header(header,action_buttons)
