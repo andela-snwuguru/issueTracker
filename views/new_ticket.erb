@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+    
+    <div class="card pad10">
+    <h4>Raise Ticket</h4>
+      <div class="row">
+        <form class="col s12">
+         <%= Guru::MaterialHtml::input_field('text','title','Title','',{'required'=>'required'}) %>
+         
+         <%= Guru::MaterialHtml::select('departement','Department',{1=>'Success',2=>'Recruit'},'',{'prompt'=>'Select Department'}) %>
+
+         <%= Guru::MaterialHtml::select('priority','Priority',{'Low'=>'Low','Medium'=>'Medium','High'=>'High'},'',{'prompt'=>'Select Priority'}) %>
+
+         <%= Guru::MaterialHtml::text_area('description','Issue Description','',{'required'=>'required'}) %>
+
+         <%= Guru::MaterialHtml::submit('Create','',{'class'=>'right'}) %>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

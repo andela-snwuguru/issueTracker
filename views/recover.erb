@@ -1,0 +1,21 @@
+
+<div class="center centralize" style="max-width: 500px">
+<h3>Password Recovery</h3>
+
+<div class="row card">
+  <div class="row">
+    <form class="col s12" method="post">
+      <div class="row">
+        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email'}) %>
+      
+        <div class="input-field">
+          <p>Changed your mind? <a href="/auth/login">click here to login</a></p>
+          <p>New Member? <a href="/auth/signup">sign up now</a></p>
+        </div>
+
+        <%= Guru::MaterialHtml::submit('Reset Password','',{'class'=>'waves-effect waves-light right'}) %>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
