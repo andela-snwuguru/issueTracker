@@ -1,0 +1,17 @@
+<div class="container">
+<div class="row">
+  <h4>Manage Tickets</h4>
+</div>
+
+<%= Guru::MaterialHtml.table(
+  ['title','department','priority','status'],
+  [
+    {'name'=>'Unable to submit lab test','department'=>'technical','priority'=>'High','status'=>'Pending','id'=>1},
+    {'name'=>'When to submit my CV','department'=>'Recruitment','priority'=>'medium','status'=>'Closed','id'=>2}
+  ],
+  '',
+  {'delete'=>{'url'=>'delete/ticket'},'view'=>{'url'=>'view/ticket'},'update'=>{'url'=>'update/ticket'}},
+  {'class'=>'striped responsive-table'}
+  ) %>
+
+</div>
