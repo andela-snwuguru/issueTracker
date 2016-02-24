@@ -7,7 +7,7 @@ require 'sinatra/session'
 set :session_fail, '/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
-require_relative 'firebase_util'
+require_relative 'src/authentication'
 
 get '/' do
 session!
@@ -23,6 +23,5 @@ get '/login' do
 end
 
 get '/logout' do
-  session_end!
   redirect '/'
 end

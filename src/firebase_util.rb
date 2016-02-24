@@ -14,8 +14,8 @@ class FirebaseUtil
     @fb_root.get("/#{path}/#{id}").body
   end
 
-  def fetch path
-    @fb_root.get("/#{path}").body
+  def fetch path, params = ''
+    @fb_root.get("/#{path}",params).body
   end
 
   def set path, data
