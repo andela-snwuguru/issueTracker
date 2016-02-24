@@ -18,10 +18,30 @@ get '/login' do
   if session?
     redirect '/'
   else
-    'login here'
+    erb :login
   end
 end
 
+
+get '/signup' do
+  if session[:login]
+    redirect '/'
+  else
+    erb :signup
+  end
+end
+
+
+get '/recover' do
+  if session[:login]
+    redirect '/'
+  else
+    erb :recover
+  end
+end
+
+
 get '/logout' do
+  session_end!
   redirect '/'
 end

@@ -1,0 +1,60 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Ticket Issue Tracker</title>
+        
+        <meta name="description" content="issue tracker helps to keep records of all issues around your service">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="/styles/normalize.css">
+        <link rel="stylesheet" href="/styles/styles.css">
+        <link rel="stylesheet" href="/styles/normalize.css">
+        
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,700,800,600,300italic' rel='stylesheet' type='text/css'>
+         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+
+  
+        
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <div class="row">
+        <nav>
+        <div class="nav-wrapper cyan">
+          <a href="#!" class="brand-logo">Ticket Issue Tracker</a>
+          <ul class="right hide-on-med-and-down">
+          <% if session[:login] %>
+            <li><a href="#" data-activates="slide-out" id="menu"><i class="material-icons">more_vert</i></a></li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+      <ul id="slide-out" class="side-nav">
+            <li><a href="#!">Link 1</a></li>
+            <li><a href="#!">Link 2</a></li>
+          </ul>
+  <div class="container">
+       <%= yield %>
+  </div>
+         
+        </div>
+        
+        <script src="http://code.jquery.com/jquery-2.2.0.js"></script>
+        <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>
