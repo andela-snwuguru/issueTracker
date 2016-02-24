@@ -7,6 +7,8 @@ require 'sinatra/session'
 set :session_fail, '/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
+require_relative 'firebase_util'
+
 get '/' do
 session!
   erb :index
@@ -16,6 +18,11 @@ get '/login' do
   if session?
     redirect '/'
   else
+    @fb_root = FirebaseUtil.new
+
+    #testing firebase storage
+    @data = @fb_root.set 'department', {title: 'success',description: 'making sure we succeed'}
+    
     'login here'
   end
 end
