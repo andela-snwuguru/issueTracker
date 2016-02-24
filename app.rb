@@ -7,6 +7,8 @@ require 'sinatra/session'
 set :session_fail, '/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
+require_relative 'firebase_util'
+
 get '/' do
 session!
   erb :index
