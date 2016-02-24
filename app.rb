@@ -45,3 +45,13 @@ get '/logout' do
   session_end!
   redirect '/'
 end
+
+post '/login' do
+  if params[:email]
+    session_start!
+    session[:login] = true
+    redirect '/'
+  else
+    redirect '/login'
+  end
+end

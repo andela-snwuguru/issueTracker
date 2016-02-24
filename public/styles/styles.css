@@ -13,3 +13,19 @@ html, body {
   margin: auto;
   text-align: center;
 }
+
+.task-cat {
+    padding: 2px 4px;
+    color: #fff;
+    margin-left: 37px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    background-clip: padding-box;
+}
+
+.pad{
+  padding:5px;
+}
