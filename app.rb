@@ -7,32 +7,9 @@ require 'sinatra/session'
 set :session_fail, '/auth/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
-require_relative 'src/authentication'
+require_relative 'helpers'
 require_relative 'src/material_html'
 
-def get_view(view,path = 'auth')
-  @views = {
-    'guest'=>{
-      'login' => :login,
-      'signup' => :signup,
-      'recover' => :recover,
-      },
-    'auth'=>{
-      'dashboard'=> :index,
-      'department' => :department,
-      'ticket' => :ticket,
-      'new_ticket' => :new_ticket,
-      'notification' => :notification,
-      'users' => :users,
-      'new_user' => :new_user,
-    }
-  
-}
-  @views[path].each{|key,value|  
-    return @views[path][view] if key == view
-  }
-  :error
-end
 
 get '/' do
   session!
@@ -60,12 +37,19 @@ get '/auth/:view' do
   erb view
 end
 
-post '/login' do
-  if params[:email]
-    session_start!
-    session[:login] = true
-   return {login: true}.to_json
-  else
-    return {'message'=>'Invalid request'}.to_json
+post '/api/post' do
+  case params[:action]
+    when 'login'
+      if params[:email]
+        session_start!
+        session[:login] = true
+       return {login: true}.to_json
+      else
+        return {'message'=>'Invalid request'}.to_json
+      end
+      break
+    else
+      return {'message'=>'Invalid request'}.to_json
   end
+  
 end

@@ -21,7 +21,7 @@ function login(){
     if(error){
       Util.alert(error,'red')
     }else{
-      Util.post('/login',{email:email},function(data){
+      Util.post('/api/post',{email:email,action:'login'},function(data){
         result = jQuery.parseJSON(data)
         if(result.login){
           document.location.href = '/dashboard'
