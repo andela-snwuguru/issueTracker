@@ -1,16 +1,35 @@
 module Guru
   class Department
 
+    def initialize
+      @fb = Guru::FirebaseUtil.new
+      @fields = [
+        'name',
+        'description',
+      ]
+    end
+
+    def create data
+      record = get_data data
+      if @fb.push('department',record)
+        return true
+      end
+      false
+    end
+
     def self.list
-      {
-        'Operations'=>'Operations',
-        'Finance'=>'Finance',
-        'Training'=>'Training',
-        'Recruitment'=>'Recruitment',
-        'Success'=>'Success',
-        'Sales'=>'Sales',
-        'Marketing'=>'Marketing',
+      @fb = Guru::FirebaseUtil.new
+      result = @fb.fetch('department')
+      result ? result : {}
+    end
+
+    private
+    def get_data data
+      record = {}
+      @fields.each{|key|
+        record[key] = data[key]
       }
+      record
     end
 
   end

@@ -123,3 +123,18 @@ post '/user' do
       redirect '/'
   end
 end
+
+
+post '/department' do
+  session!
+
+  department = Guru::Department.new
+  if department.create(params)
+    alert('Department successfully created','green')
+    redirect '/department'
+  else
+    alert('Unable to create department','red')
+    redirect '/users'
+  end
+  redirect '/department'
+end
