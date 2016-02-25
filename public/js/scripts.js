@@ -43,6 +43,53 @@ $(document).ready(function() {
     return false;
   });
 
+
+  $('#signup').submit(function(evt){
+    var form = evt.target
+    var email = form.email.value
+    var password = form.password.value
+    var confirm_password = form.confirm_password.value
+    var name = form.name.value
+    var location = form.location.value
+    var role = 'Customer'
+    if(password != confirm_password){
+      Util.alert('Password mismatch!','red')
+      return false
+    }
+
+    if(Util.validateEmail(email)){
+      Util.createUser(email,password,function(error,data){
+      if(error){
+        Util.alert(error,'red')
+      }else{
+        record = {
+          email:email,
+          name:name,
+          location:location,
+          role:role,
+          department:'none',
+          action:'createUser',
+          success:'Your account is created, use the login form'
+        }
+        Util.post('/api/post',record,function(data){
+          result = jQuery.parseJSON(data);
+          if(result.ok){
+            document.location.href = '/dashboard';
+          }else{
+            Util.alert('Unable to complete request','red');
+            Util.removeUser(email,password,function(){});
+          }
+        })
+      }
+    });
+
+    }else{
+      Util.alert('Invalid Email formart','red')
+    }
+
+    return false;
+  });
+
   $('.delete_user').click(function(evt){
      var ref = $(this).attr('href')
      id = ref.replace('#/','')

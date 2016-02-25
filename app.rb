@@ -92,7 +92,8 @@ post '/api/post' do
       #session_start!
       user = Guru::User.new
       if user.create(params)
-        alert('user created successfully','green')
+        msg = params[:success] ? params[:success] : 'user created successfully'
+        alert(msg,'green')
         return {ok: true}.to_json
       else
         return {ok: false}.to_json

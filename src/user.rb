@@ -3,6 +3,13 @@ module Guru
 
     def initialize
       @fb = Guru::FirebaseUtil.new
+      @fields = [
+        'name',
+        'location',
+        'department',
+        'role',
+        'email',
+      ]
     end
 
     def self.list
@@ -44,13 +51,11 @@ module Guru
     def get_data data
       record = {}
       record['department'] = 'none'
-      data.each{|key,value|
-        if key != 'action' && key != 'id'
-          if (key == 'department') && Guru::Access.customer?(data['role'])
-            next
-          end
-          record[key] = value
+      @fields.each{|key|
+        if (key == 'department') && Guru::Access.customer?(data['role'])
+          next
         end
+        record[key] = data[key]
       }
       record
     end
