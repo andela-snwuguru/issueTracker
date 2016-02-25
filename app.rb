@@ -206,6 +206,10 @@ post '/reply' do
   session!
   ticket_reply = Guru::TicketReply.new
   if ticket_reply.create(params[:ticket_id],params[:comment])
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['status'] = Guru::Config::STATUS_PROGRESS
+    ticket.update(params[:id],@record)
     alert('Reply successfully sent','green')
   else
     alert('Unable to send reply','red')

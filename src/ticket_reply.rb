@@ -34,9 +34,9 @@ module Guru
       end
       false
     end
-    def self.list
+    def self.list ticket_id
       @fb = Guru::FirebaseUtil.new
-      result = @fb.fetch('ticket_reply')
+      result = @fb.fetch("ticket_reply/#{ticket_id}")
       result ? result : {}
     end
 
