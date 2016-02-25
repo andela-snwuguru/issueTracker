@@ -68,6 +68,16 @@ get '/delete/:model/:id' do
       redirect '/department'
     end
     break
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    if ticket.delete(params[:id])
+      alert('Ticket deleted!','green')
+      redirect '/ticket'
+    else
+      alert('Unable to delete Ticket','red')
+      redirect '/ticket'
+    end
+    break
   else
       erb :error
   end
