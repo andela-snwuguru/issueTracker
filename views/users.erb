@@ -3,13 +3,26 @@
   <h4>Manage Users</h4>
   <a href="/new_user" class="btn">Create User</a>
 </div>
+<% 
+  users = Guru::User.list
+  user_records = []
+  table_header = []
+  users.each{|id,records|
+    user_record = Hash.new
+    user_record['id'] = id
+    records.each{|key,value|
+      user_record[key] = value
+      if !table_header.include? key
+        table_header << key 
+      end
+    }
+    user_records << user_record
+  }
 
+ %>
 <%= Guru::MaterialHtml.table(
-  ['name','email','location'],
-  [
-    {'name'=>'Nwuguru Sunday','email'=>'sunday@gmail.com','location'=>'Lagos, Nigeria','id'=>1},
-    {'name'=>'Goodman Sunday','email'=>'friday@gmail.com','location'=>'Lagos, Nigeria','id'=>2},
-  ],
+  table_header,
+  user_records,
   '',
   {'delete'=>{'url'=>'delete/ticket'},'update'=>{'url'=>'update/ticket'}},
   {'class'=>'striped responsive-table'}

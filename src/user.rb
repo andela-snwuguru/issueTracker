@@ -1,15 +1,18 @@
 module Guru
   class User
 
+    def initialize
+      @fb = Guru::FirebaseUtil.new
+    end
+
     def self.list
-      {
-      
-      }
+      @fb = Guru::FirebaseUtil.new
+      result = @fb.fetch('users')
+      result ? result : {}
     end
 
     def create data
       record = get_data data
-      @fb = Guru::FirebaseUtil.new
       if @fb.push('users',record)
         return true
       end
