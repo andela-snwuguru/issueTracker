@@ -49,6 +49,11 @@
             <li><a href="/user/logout"><i class="material-icons">power_settings_new</i> Logout</a></li>
           </ul>
   <div class="row">
+        <% if session[:message] && !session[:message].empty? %>
+        <p class="alert container <%= session[:color] %> lighten-3 white-text" style="margin-top:20px;"><%= session[:message] %></p>
+        <% 
+          session[:message] = ''
+        end %>
        <%= yield %>
   </div>
          

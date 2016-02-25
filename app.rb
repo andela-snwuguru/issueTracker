@@ -7,8 +7,13 @@ require 'sinatra/session'
 set :session_fail, '/auth/login'
 set :session_secret, 'ATincketdIsseueTralckera'
 
+require_relative 'src/config'
 require_relative 'helpers'
+require_relative 'src/authentication'
 require_relative 'src/material_html'
+require_relative 'src/firebase_util'
+require_relative 'src/department'
+require_relative 'src/user'
 
 
 get '/' do
@@ -23,7 +28,7 @@ get '/:view' do
 end
 
 get '/user/logout' do
-  session[:login] =false 
+  session[:login] = false 
   session_end!
   redirect '/login'
 end
@@ -43,13 +48,36 @@ post '/api/post' do
       if params[:email]
         session_start!
         session[:login] = true
-       return {login: true}.to_json
+        return {login: true}.to_json
       else
         return {'message'=>'Invalid request'}.to_json
+      end
+      break
+    when 'createUser'
+      #session_start!
+      user = Guru::User.new
+      if user.create(params)
+        alert('user created successfully','green')
+        return {ok: true}.to_json
+      else
+        return {ok: false}.to_json
       end
       break
     else
       return {'message'=>'Invalid request'}.to_json
   end
   
+end
+
+post '/user' do
+  session!
+  case params[:action]
+    when 'create'
+      alert("Correct","green")
+      redirect '/users'
+      break
+    else
+      alert("Unknown post request","red")
+      redirect '/'
+  end
 end
