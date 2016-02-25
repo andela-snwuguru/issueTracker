@@ -14,6 +14,7 @@ require_relative 'src/material_html'
 require_relative 'src/firebase_util'
 require_relative 'src/department'
 require_relative 'src/ticket'
+require_relative 'src/ticket_reply'
 require_relative 'src/user'
 
 
@@ -199,4 +200,15 @@ post '/ticket' do
     redirect '/ticket'
   end
   redirect '/ticket'
+end
+
+post '/reply' do
+  session!
+  ticket_reply = Guru::TicketReply.new
+  if ticket_reply.create(params[:ticket_id],params[:comment])
+    alert('Reply successfully sent','green')
+  else
+    alert('Unable to send reply','red')
+  end
+  redirect "/view/ticket/#{params[:ticket_id]}"
 end

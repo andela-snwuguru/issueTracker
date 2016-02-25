@@ -3,18 +3,13 @@ module Guru
 
     def initialize
       @fb = Guru::FirebaseUtil.new
-      @fields = Ticket.list_fields
     end
 
-    def self.list_fields
-      [
-        'comment',
-      ]
-    end
-
-    def create data
-      record = get_data data
-      if @fb.push('ticket_reply',record)
+    def create ticket_id,comment
+      record = {
+        'comment' => comment
+      }
+      if @fb.push("ticket_reply/#{ticket_id}",record)
         return true
       end
       false
@@ -43,15 +38,6 @@ module Guru
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket_reply')
       result ? result : {}
-    end
-
-    private
-    def get_data data
-      record = {}
-      @fields.each{|key|
-        record[key] = data[key]
-      }
-      record
     end
 
   end

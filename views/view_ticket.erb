@@ -64,6 +64,7 @@
             <div class="talktext">
                 <form class="col s12" action="/reply" method="post" id="reply">
               <%= Guru::MaterialHtml::text_area('comment','Comment','',{'required'=>'required'}) %>
+              <%= Guru::MaterialHtml::input_field('hidden','ticket_id','',@record['id'],{'required'=>'required'}) %>
               <%= Guru::MaterialHtml::submit('Send','',{'class'=>'right'}) %>
                 </form>
               
