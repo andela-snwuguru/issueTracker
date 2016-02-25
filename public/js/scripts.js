@@ -43,6 +43,17 @@ $(document).ready(function() {
     return false;
   });
 
+  $('.delete_user').click(function(evt){
+     var ref = $(this).attr('href')
+     id = ref.replace('#/','')
+     /*
+        removing the user login will be implement here
+        before the redirect
+     */
+     document.location.href = '/delete/user/'+id
+    evt.preventDefault()
+  });
+
 });
 
 function login(){

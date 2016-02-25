@@ -43,6 +43,7 @@ module Guru
     
     def get_data data
       record = {}
+      record['department'] = 'none'
       data.each{|key,value|
         if key != 'action' && key != 'id'
           if (key == 'department') && Guru::Access.customer?(data['role'])
