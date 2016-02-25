@@ -18,8 +18,14 @@ module Guru
       result ? result : {}
     end
 
+    def self.search(key,value)
+      users = User.list
+      users.select{|id,record| record[key] == value}
+    end
+
     def create data
       record = get_data data
+      record['created_at'] = Time.new
       if @fb.push('users',record)
         return true
       end
@@ -57,6 +63,7 @@ module Guru
         end
         record[key] = data[key]
       }
+      record['modified_at'] = Time.new
       record
     end
   end

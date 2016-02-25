@@ -5,15 +5,12 @@
 <% 
   departments = Guru::Department.list
   department_records = []
-  table_header = []
+  table_header = ['name','description','created_at']
   departments.each{|id,records|
     record = Hash.new
     record['id'] = id
-    records.each{|key,value|
-      record[key] = value
-      if !table_header.include? key
-        table_header << key 
-      end
+    table_header.each{|key|
+      record[key] = records[key]
     }
     department_records << record
   }

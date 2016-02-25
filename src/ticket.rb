@@ -16,9 +16,12 @@ module Guru
       ]
     end
 
-    def create data
+    def create user, data
       data['status'] = Guru::Config::STATUS_PENDING
       record = get_data data
+      record['created_at'] = Time.new
+      record['uid'] = user[:uid]
+      record['user'] = user[:user]
       if @fb.push('ticket',record)
         return true
       end
@@ -48,6 +51,11 @@ module Guru
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket')
       result ? result : {}
+    end
+
+    def self.search key, value
+      result = Ticket.list
+      result.select{|id,record| record[key] == value}
     end
 
     private

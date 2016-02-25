@@ -45,9 +45,11 @@
       <ul id="slide-out" class="side-nav">
             <li><a href="/new_ticket">Raise Tickets</a></li>
             <li><a href="/ticket">List Tickets</a></li>
+            <% if Guru::Access.admin? session[:role] %>
             <li><a href="/department">List Department</a></li>
             <li><a href="/users">List Users</a></li>
-            <li><a href="/user/logout"><i class="material-icons">power_settings_new</i> Logout</a></li>
+            <% end %>
+            <li><a href="/user/logout" class="red-text">Logout</a></li>
           </ul>
   <div class="row">
         <% if session[:message] && !session[:message].empty? %>

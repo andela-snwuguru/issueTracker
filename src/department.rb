@@ -11,6 +11,7 @@ module Guru
 
     def create data
       record = get_data data
+      record['created_at'] = Time.new
       if @fb.push('department',record)
         return true
       end

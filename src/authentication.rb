@@ -18,7 +18,6 @@ module Guru
   end
 
   class Access
-
     def self.admin? role
       role == Guru::Config::ADMIN_ROLE
     end
