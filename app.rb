@@ -52,8 +52,19 @@ get '/delete/:model/:id' do
       alert('User delete!','green')
       redirect '/users'
     else
-      alert('Unable to delete User','red')
+      alert('Unable to deleted User','red')
       redirect '/users'
+    end
+    break
+
+  when 'department'
+    department = Guru::Department.new
+    if department.delete(params[:id])
+      alert('Department deleted!','green')
+      redirect '/department'
+    else
+      alert('Unable to delete Department','red')
+      redirect '/department'
     end
     break
   else
@@ -122,4 +133,19 @@ post '/user' do
       alert("Unknown post request","red")
       redirect '/'
   end
+end
+
+
+post '/department' do
+  session!
+
+  department = Guru::Department.new
+  if department.create(params)
+    alert('Department successfully created','green')
+    redirect '/department'
+  else
+    alert('Unable to create department','red')
+    redirect '/users'
+  end
+  redirect '/department'
 end
