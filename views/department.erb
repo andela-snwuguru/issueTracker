@@ -2,13 +2,26 @@
 <div class="row">
   <h4>Manage Departments</h4>
 </div>
+<% 
+  departments = Guru::Department.list
+  department_records = []
+  table_header = []
+  departments.each{|id,records|
+    record = Hash.new
+    record['id'] = id
+    records.each{|key,value|
+      record[key] = value
+      if !table_header.include? key
+        table_header << key 
+      end
+    }
+    department_records << record
+  }
 
+ %>
 <%= Guru::MaterialHtml.table(
-  ['name','description'],
-  [
-    {'name'=>'Success','description'=>'making success','id'=>1},
-    {'name'=>'Recruit','description'=>'Recruiting success','id'=>2}
-  ],
+  table_header,
+  department_records,
   '',
   {'delete'=>{'url'=>'delete/department'}},
   {'class'=>'striped responsive-table'}
