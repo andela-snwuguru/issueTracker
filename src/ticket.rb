@@ -3,7 +3,11 @@ module Guru
 
     def initialize
       @fb = Guru::FirebaseUtil.new
-      @fields = [
+      @fields = Ticket.list_fields
+    end
+
+    def self.list_fields
+      [
         'title',
         'department',
         'priority',
@@ -28,6 +32,18 @@ module Guru
       false
     end
 
+    def get id
+      result = @fb.get("ticket",id)
+      result ? result : {}
+    end
+
+    def update id, data
+      record = get_data data
+      if @fb.set("ticket/#{id}",record)
+        return true
+      end
+      false
+    end
     def self.list
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket')

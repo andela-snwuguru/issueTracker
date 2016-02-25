@@ -13,6 +13,7 @@ require_relative 'src/authentication'
 require_relative 'src/material_html'
 require_relative 'src/firebase_util'
 require_relative 'src/department'
+require_relative 'src/ticket'
 require_relative 'src/user'
 
 
@@ -25,6 +26,20 @@ get '/:view' do
   session!
   view = get_view params[:view]
   erb view
+end
+
+get '/view/:model/:id' do
+  session!
+  case params[:model]
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['id'] = params[:id]
+    return erb :view_ticket
+    break
+  else
+    erb :error
+  end
 end
 
 get '/user/logout' do
@@ -67,6 +82,16 @@ get '/delete/:model/:id' do
       redirect '/department'
     end
     break
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    if ticket.delete(params[:id])
+      alert('Ticket deleted!','green')
+      redirect '/ticket'
+    else
+      alert('Unable to delete Ticket','red')
+      redirect '/ticket'
+    end
+    break
   else
       erb :error
   end
@@ -82,6 +107,18 @@ get '/update/:model/:id' do
     @record = user.get(params[:id])
     @record['id'] = params[:id]
     return erb :update_user
+    break
+
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['status'] = Guru::Config::STATUS_CLOSED
+    if ticket.update(params[:id],@record)
+      alert('Ticket closed!','green')
+    else
+      alert('Unable to close Ticket','red')
+    end
+    redirect "/view/ticket/#{params[:id]}"
     break
   else
       erb :error
@@ -148,4 +185,18 @@ post '/department' do
     redirect '/users'
   end
   redirect '/department'
+end
+
+post '/ticket' do
+  session!
+
+  ticket = Guru::Ticket.new
+  if ticket.create(params)
+    alert('Ticket successfully created','green')
+    redirect '/ticket'
+  else
+    alert('Unable to create ticket','red')
+    redirect '/ticket'
+  end
+  redirect '/ticket'
 end

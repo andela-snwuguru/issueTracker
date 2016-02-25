@@ -27,6 +27,24 @@ module Guru
       {'Low'=>'Low','Medium'=>'Medium','High'=>'High'}
     end
 
+    def self.priority_color value
+      colors = {
+        'Low'=>'blue',
+        'Medium'=>'orange',
+        'High'=>'red',
+      }
+      colors[value]
+    end
+
+    def self.status_color value
+      colors = {
+        STATUS_PROGRESS=>'green',
+        STATUS_PENDING=>'yellow',
+        STATUS_CLOSED=>'blue',
+      }
+      colors[value]
+    end
+
   end
 
 end

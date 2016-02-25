@@ -4,10 +4,11 @@
     <div class="card pad10">
     <h4>Raise Ticket</h4>
       <div class="row">
+      
         <form class="col s12" action="/ticket" method="post">
          <%= Guru::MaterialHtml::input_field('text','title','Title','',{'required'=>'required'}) %>
          
-         <%= Guru::MaterialHtml::select('departement','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department'}) %>
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department'}) %>
 
          <%= Guru::MaterialHtml::select('priority','Priority',Guru::Config.priority,'',{'prompt'=>'Select Priority'}) %>
 
