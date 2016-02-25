@@ -37,6 +37,13 @@ module Guru
       result ? result : {}
     end
 
+    def update id, data
+      record = get_data data
+      if @fb.set("ticket/#{id}",record)
+        return true
+      end
+      false
+    end
     def self.list
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket')

@@ -108,6 +108,18 @@ get '/update/:model/:id' do
     @record['id'] = params[:id]
     return erb :update_user
     break
+
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['status'] = Guru::Config::STATUS_CLOSED
+    if ticket.update(params[:id],@record)
+      alert('Ticket closed!','green')
+    else
+      alert('Unable to close Ticket','red')
+    end
+    redirect "/view/ticket/#{params[:id]}"
+    break
   else
       erb :error
   end
