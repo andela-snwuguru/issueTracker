@@ -61,6 +61,22 @@ get '/delete/:model/:id' do
   end
 end
 
+
+get '/update/:model/:id' do
+  session!
+
+  case params[:model]
+  when 'user'
+    user = Guru::User.new
+    @record = user.get(params[:id])
+    @record['id'] = params[:id]
+    return erb :update_user
+    break
+  else
+      erb :error
+  end
+end
+
 post '/api/post' do
   case params[:action]
     when 'login'
@@ -91,9 +107,15 @@ end
 post '/user' do
   session!
   case params[:action]
-    when 'create'
-      alert("Correct","green")
-      redirect '/users'
+    when 'update'
+      user = Guru::User.new
+      if user.update(params[:id],params)
+        alert('user updated successfully','green')
+        redirect '/users'
+      else
+        alert('Unable to update user record','red')
+        redirect '/users'
+      end
       break
     else
       alert("Unknown post request","red")

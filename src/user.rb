@@ -19,6 +19,19 @@ module Guru
       false
     end
 
+    def update id, data
+      record = get_data data
+      if @fb.set("users/#{id}",record)
+        return true
+      end
+      false
+    end
+
+    def get id
+      result = @fb.get("users",id)
+      result ? result : {}
+    end
+
     def delete id
       if @fb.delete("users/#{id}")
         return true
@@ -31,7 +44,7 @@ module Guru
     def get_data data
       record = {}
       data.each{|key,value|
-        if key != 'action'
+        if key != 'action' && key != 'id'
           if (key == 'department') && Guru::Access.customer?(data['role'])
             next
           end
