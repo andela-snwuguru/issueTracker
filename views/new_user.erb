@@ -22,7 +22,7 @@
          <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,'',{'prompt'=>'Select Role'}) %>
 
 
-         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list,'',{'prompt'=>'Select Department'}) %>
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department'}) %>
 
         <%= Guru::MaterialHtml::submit('Create User','',{'class'=>'waves-effect waves-light right'}) %>
       </div>

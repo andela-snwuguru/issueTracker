@@ -17,10 +17,26 @@ module Guru
       false
     end
 
+    def delete id
+      if @fb.delete("department/#{id}")
+        return true
+      end
+      false
+    end
+
     def self.list
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('department')
       result ? result : {}
+    end
+
+    def self.list_data
+      result = self.list
+      data = {}
+      result.each{|id,records|
+        data[records['name']] = records['name']
+      }
+      data
     end
 
     private

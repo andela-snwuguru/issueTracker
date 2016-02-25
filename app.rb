@@ -52,8 +52,19 @@ get '/delete/:model/:id' do
       alert('User delete!','green')
       redirect '/users'
     else
-      alert('Unable to delete User','red')
+      alert('Unable to deleted User','red')
       redirect '/users'
+    end
+    break
+
+  when 'department'
+    department = Guru::Department.new
+    if department.delete(params[:id])
+      alert('Department deleted!','green')
+      redirect '/department'
+    else
+      alert('Unable to delete Department','red')
+      redirect '/department'
     end
     break
   else
