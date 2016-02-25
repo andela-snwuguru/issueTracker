@@ -141,8 +141,18 @@ post '/api/post' do
   case params[:action]
     when 'login'
       if params[:email]
+        user = Guru::User.search('email',params[:email])
+        if user.empty?
+          return {login: false}.to_json
+        end
         session_start!
         session[:login] = true
+        session[:uid] = params[:uid]
+        user.each{|id,data|
+          data.each{|key, value|
+            session[key] = value
+          }
+        }
         return {login: true}.to_json
       else
         return {'message'=>'Invalid request'}.to_json
@@ -162,7 +172,6 @@ post '/api/post' do
     else
       return {'message'=>'Invalid request'}.to_json
   end
-  
 end
 
 post '/user' do

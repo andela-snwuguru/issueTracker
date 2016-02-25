@@ -18,6 +18,11 @@ module Guru
       result ? result : {}
     end
 
+    def self.search(key,value)
+      users = User.list
+      users.select{|id,record| record[key] == value}
+    end
+    
     def create data
       record = get_data data
       if @fb.push('users',record)
