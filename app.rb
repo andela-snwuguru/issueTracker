@@ -42,6 +42,25 @@ get '/auth/:view' do
   erb view
 end
 
+get '/delete/:model/:id' do
+  session!
+
+  case params[:model]
+  when 'user'
+    user = Guru::User.new
+    if user.delete(params[:id])
+      alert('User delete!','green')
+      redirect '/users'
+    else
+      alert('Unable to delete User','red')
+      redirect '/users'
+    end
+    break
+  else
+      erb :error
+  end
+end
+
 post '/api/post' do
   case params[:action]
     when 'login'

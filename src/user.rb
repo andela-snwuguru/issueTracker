@@ -19,6 +19,13 @@ module Guru
       false
     end
 
+    def delete id
+      if @fb.delete("users/#{id}")
+        return true
+      end
+      false
+    end
+
     private
     
     def get_data data

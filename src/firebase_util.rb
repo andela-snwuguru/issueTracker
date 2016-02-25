@@ -26,5 +26,10 @@ module Guru
     def push path, data
       @fb_root.push("/#{path}", data)
     end
+
+    def delete path
+      @fb_root.delete("/#{path}")
+    end
+
   end
 end
