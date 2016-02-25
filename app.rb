@@ -58,6 +58,17 @@ get '/auth/:view' do
   erb view
 end
 
+get '/reply/:ticket_id/:id' do
+  session!
+  reply = Guru::TicketReply.new
+  if reply.delete(params[:ticket_id],params[:id])
+    alert('Reply deleted!','green')
+  else
+    alert('Unable to delete Reply','red')
+  end
+  redirect "/view/ticket/#{params[:ticket_id]}"
+end
+
 get '/delete/:model/:id' do
   session!
 

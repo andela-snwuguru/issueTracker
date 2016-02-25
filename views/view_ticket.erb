@@ -38,8 +38,8 @@
           </div>
           <div class="talk-bubble tri-right left-top">
           
-            <div class="talktext">
-              <p><%= records['comment'] %></p>
+            <div class="talktext" style="min-width:300px">
+              <p><%= records['comment'] %> <a href="/reply/<%= @record['id'] %>/<%= id  %>" class="right"> <i class="material-icons">delete</i></a></p>
             </div>
           </div>
         </div>

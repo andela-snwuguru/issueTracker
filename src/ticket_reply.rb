@@ -15,8 +15,8 @@ module Guru
       false
     end
 
-    def delete id
-      if @fb.delete("ticket_reply/#{id}")
+    def delete ticket_id,id
+      if @fb.delete("ticket_reply/#{ticket_id}/#{id}")
         return true
       end
       false
