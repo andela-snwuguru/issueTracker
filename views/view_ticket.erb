@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="row" style="margin-top:20px;">
+    
+    <div class="card pad10">
+      <div class="row">
+      <div class="radius-top grey lighten-4 pad10" style="margin-top: -23px">
+          <h5><%= @record['title']  %></h5> 
+          <span class="chip grey pad lighten-2"><%= @record['department'] %></span>
+          <span class="chip <%= Guru::Config.priority_color(@record['priority']) %> pad lighten-2"><%= @record['priority'] %></span>
+          <span class="chip <%= Guru::Config.status_color(@record['status']) %> pad lighten-2"><%= @record['status'] %></span>
+        </div>
+        <div class="row" style="padding-left:20px">
+          <div class="chip cyan lighten-2">
+            <img src="/images/user.jpg" alt="Contact Person">
+            sunday
+          </div>
+          <div class="talk-bubble tri-right left-top">
+          
+            <div class="talktext">
+              <p><%= @record['description']  %></p>
+            </div>
+          </div>
+        </div>
+        <a href="/update/ticket/<%= @record['id']  %>" class="btn red">Close Issue</a>
+        <hr/>
+      </div>
+        <div class="row" style="padding-left:20px">
+          <div class="chip cyan lighten-2">
+            <img src="/images/user.jpg" alt="Contact Person">
+            sunday
+          </div>
+          <div class="talk-bubble tri-right left-top">
+          
+            <div class="talktext">
+              <p>This one adds a right triangle on the left, flush at the top by using .tri-right and .left-top to specify the location.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

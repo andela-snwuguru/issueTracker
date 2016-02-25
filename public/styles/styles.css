@@ -45,3 +45,9 @@ html, body {
   border-radius: 6px;
   padding:10px;
 }
+
+.radius-top{
+  border-radius-top-left: 6px;
+  border-radius-top-right: 6px;
+}
+

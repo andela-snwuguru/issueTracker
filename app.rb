@@ -28,6 +28,20 @@ get '/:view' do
   erb view
 end
 
+get '/view/:model/:id' do
+  session!
+  case params[:model]
+  when 'ticket'
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['id'] = params[:id]
+    return erb :view_ticket
+    break
+  else
+    erb :error
+  end
+end
+
 get '/user/logout' do
   session[:login] = false 
   session_end!

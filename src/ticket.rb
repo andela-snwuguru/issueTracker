@@ -32,6 +32,11 @@ module Guru
       false
     end
 
+    def get id
+      result = @fb.get("ticket",id)
+      result ? result : {}
+    end
+
     def self.list
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket')
