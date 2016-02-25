@@ -7,6 +7,10 @@
   tickets = Guru::Ticket.list
   ticket_records = []
   table_header = ['title','department','priority','status']
+  if Guru::Access.admin? session[:role]
+    table_header << 'user'
+  end
+  
   tickets.each{|id,records|
     record = Hash.new
     record['id'] = id

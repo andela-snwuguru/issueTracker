@@ -18,7 +18,7 @@
 
          <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,@record['role'],{'prompt'=>'Select Role'}) %>
 
-         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list,@record['department'],{'prompt'=>'Select Department'}) %>
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,@record['department'],{'prompt'=>'Select Department'}) %>
 
         <%= Guru::MaterialHtml::input_field('hidden','id','',@record['id']) %> 
 

@@ -212,7 +212,7 @@ post '/ticket' do
   session!
 
   ticket = Guru::Ticket.new
-  if ticket.create(params)
+  if ticket.create({uid: session[:uid], user: session[:name]},params)
     alert('Ticket successfully created','green')
     redirect '/ticket'
   else
