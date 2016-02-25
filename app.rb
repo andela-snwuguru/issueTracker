@@ -13,6 +13,7 @@ require_relative 'src/authentication'
 require_relative 'src/material_html'
 require_relative 'src/firebase_util'
 require_relative 'src/department'
+require_relative 'src/ticket'
 require_relative 'src/user'
 
 
@@ -148,4 +149,18 @@ post '/department' do
     redirect '/users'
   end
   redirect '/department'
+end
+
+post '/ticket' do
+  session!
+
+  ticket = Guru::Ticket.new
+  if ticket.create(params)
+    alert('Ticket successfully created','green')
+    redirect '/ticket'
+  else
+    alert('Unable to create ticket','red')
+    redirect '/ticket'
+  end
+  redirect '/ticket'
 end

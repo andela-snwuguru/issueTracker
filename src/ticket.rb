@@ -3,7 +3,11 @@ module Guru
 
     def initialize
       @fb = Guru::FirebaseUtil.new
-      @fields = [
+      @fields = Ticket.list_fields
+    end
+
+    def self.list_fields
+      [
         'title',
         'department',
         'priority',
