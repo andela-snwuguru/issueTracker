@@ -53,6 +53,11 @@ module Guru
       result ? result : {}
     end
 
+    def self.search key, value
+      result = Ticket.list
+      result.select{|id,record| record[key] == value}
+    end
+
     private
     def get_data data
       record = {}

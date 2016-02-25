@@ -4,13 +4,21 @@
   <a href="/new_ticket" class="btn">Raise Issue</a>
 </div>
 <% 
-  tickets = Guru::Ticket.list
+
+  if Guru::Access.admin? session[:role]
+    tickets = Guru::Ticket.list
+  elsif Guru::Access.customer? session[:role]
+    tickets = Guru::Ticket.search('uid', session[:uid]) 
+  else
+    tickets = Guru::Ticket.search('department',session[:department])
+  end
+
   ticket_records = []
   table_header = ['title','department','priority','status']
   if Guru::Access.admin? session[:role]
     table_header << 'user'
   end
-  
+
   tickets.each{|id,records|
     record = Hash.new
     record['id'] = id

@@ -4,7 +4,7 @@
     <div class="card pad10">
       <div class="row">
       <div class="radius-top grey lighten-4 pad10" style="margin-top: -23px">
-          <h5><%= @record['title']  %></h5> 
+          <h5><%= @record['title']  %> <small class="right" style="font-size:10pt">At: <%= @record['created_at'] %></small></h5> 
           <span class="chip grey pad lighten-2"><%= @record['department'] %></span>
           <span class="chip <%= Guru::Config.priority_color(@record['priority']) %> pad lighten-2"><%= @record['priority'] %></span>
           <span class="chip <%= Guru::Config.status_color(@record['status']) %> pad lighten-2"><%= @record['status'] %></span>
