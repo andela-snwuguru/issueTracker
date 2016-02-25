@@ -1,6 +1,5 @@
 require_relative 'firebase_util'
 
-
 module Guru
   class Authentication
 
@@ -15,6 +14,7 @@ module Guru
     def login_by_facebook
 
     end
+
   end
 
 end
