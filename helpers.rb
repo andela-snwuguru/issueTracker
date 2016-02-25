@@ -21,3 +21,9 @@ def get_view(view,path = 'auth')
   }
   :error
 end
+
+
+def alert message, color
+  session[:message] = message
+  session[:color] = color
+end

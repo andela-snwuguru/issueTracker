@@ -108,9 +108,9 @@ module Guru
           row << "<td>#{value}</td>"
         }
         if !action_buttons.empty?
-          view_button = action_buttons['view'] ? "<a href='#{action_buttons['view']['url']}/#{items['id']}' title='View Item'><i class='material-icons'>visibility</i></a>" : ''
-          update_button = action_buttons['update'] ? "<a href='#{action_buttons['update']['url']}/#{items['id']}' title='Update Item'><i class='material-icons'>input</i></a>" : ''
-          delete_button = action_buttons['delete'] ? "<a href='#{action_buttons['delete']['url']}/#{items['id']}' title='Remove Item'><i class='material-icons'>delete</i></a>" : ''
+          view_button = action_buttons['view'] ? "<a href='#{action_buttons['view']['url']}/#{items['id']}' title='View Item' class='#{action_buttons['view']['class']}'><i class='material-icons'>visibility</i></a>" : ''
+          update_button = action_buttons['update'] ? "<a href='#{action_buttons['update']['url']}/#{items['id']}' title='Update Item' class='#{action_buttons['update']['class']}'><i class='material-icons'>input</i></a>" : ''
+          delete_button = action_buttons['delete'] ? "<a href='#{action_buttons['delete']['url']}/#{items['id']}' title='Remove Item' class='#{action_buttons['delete']['class']}'><i class='material-icons'>delete</i></a>" : ''
           row << "<td>#{view_button} #{update_button} #{delete_button}</td>"
         end
 

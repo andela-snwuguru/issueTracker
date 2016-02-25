@@ -1,0 +1,30 @@
+
+<div class="center centralize" style="max-width: 500px">
+<h4>Update User (<%= @record['email']  %>)</h4>
+
+<div class="row card">
+  <div class="row">
+    <form class="col s12" method="post" action="/user">
+      <div class="row">
+      <p class="alert white-text lighten-2" style="text-align:left; display:none;"></p>
+        
+        <%= Guru::MaterialHtml::input_field('hidden','action','','update') %> 
+
+        <%= Guru::MaterialHtml::input_field('text','name','Name',@record['name'],{'required'=>'required','icon'=>'account_circle'}) %>     
+
+        <%= Guru::MaterialHtml::input_field('text','location','Location',@record['location'],{'required'=>'required','icon'=>'my_location'}) %>
+
+        <%= Guru::MaterialHtml::input_field('hidden','email','',@record['email']) %>
+
+         <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,@record['role'],{'prompt'=>'Select Role'}) %>
+
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list,@record['department'],{'prompt'=>'Select Department'}) %>
+
+        <%= Guru::MaterialHtml::input_field('hidden','id','',@record['id']) %> 
+
+        <%= Guru::MaterialHtml::submit('Update User','',{'class'=>'waves-effect waves-light right'}) %>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
