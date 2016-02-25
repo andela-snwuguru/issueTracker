@@ -26,33 +26,27 @@
         <% end %>
         <hr/>
       </div>
-        <div class="row" style="padding-left:20px">
+
+
+      <% 
+        replies = Guru::TicketReply.list(@record['id'])
+        replies.each{|id,records| %>
+          <div class="row" style="padding-left:20px">
           <div class="chip cyan lighten-2">
             <img src="/images/user.jpg" alt="Contact Person">
             sunday
           </div>
           <div class="talk-bubble tri-right left-top">
           
-            <div class="talktext">
-              <p>This one adds a right triangle on the left, flush at the top by using .tri-right and .left-top to specify the location.</p>
+            <div class="talktext" style="min-width:300px">
+              <p><%= records['comment'] %> <a href="/reply/<%= @record['id'] %>/<%= id  %>" class="right"> <i class="material-icons">delete</i></a></p>
             </div>
           </div>
         </div>
 
-        <div class="row" style="padding-left:20px">
-          <div class="chip cyan lighten-2">
-            <img src="/images/user.jpg" alt="Contact Person">
-            sunday
-          </div>
-          <div class="talk-bubble tri-right left-top">
-          
-            <div class="talktext">
-              <p>This one adds a right triangle on the left, flush at the top by using .tri-right and .left-top to specify the location.</p>
-            </div>
-          </div>
-        </div>
-
-
+      <%  } %>
+        
+       
 <% if (Guru::Config::STATUS_PENDING == @record['status']) || (Guru::Config::STATUS_PROGRESS == @record['status']) %>
          <div class="row" style="padding-left:20px">
           
@@ -64,6 +58,7 @@
             <div class="talktext">
                 <form class="col s12" action="/reply" method="post" id="reply">
               <%= Guru::MaterialHtml::text_area('comment','Comment','',{'required'=>'required'}) %>
+              <%= Guru::MaterialHtml::input_field('hidden','ticket_id','',@record['id'],{'required'=>'required'}) %>
               <%= Guru::MaterialHtml::submit('Send','',{'class'=>'right'}) %>
                 </form>
               

@@ -14,6 +14,7 @@ require_relative 'src/material_html'
 require_relative 'src/firebase_util'
 require_relative 'src/department'
 require_relative 'src/ticket'
+require_relative 'src/ticket_reply'
 require_relative 'src/user'
 
 
@@ -55,6 +56,17 @@ get '/auth/:view' do
 
   view = get_view params[:view], "guest"
   erb view
+end
+
+get '/reply/:ticket_id/:id' do
+  session!
+  reply = Guru::TicketReply.new
+  if reply.delete(params[:ticket_id],params[:id])
+    alert('Reply deleted!','green')
+  else
+    alert('Unable to delete Reply','red')
+  end
+  redirect "/view/ticket/#{params[:ticket_id]}"
 end
 
 get '/delete/:model/:id' do
@@ -199,4 +211,19 @@ post '/ticket' do
     redirect '/ticket'
   end
   redirect '/ticket'
+end
+
+post '/reply' do
+  session!
+  ticket_reply = Guru::TicketReply.new
+  if ticket_reply.create(params[:ticket_id],params[:comment])
+    ticket = Guru::Ticket.new
+    @record = ticket.get(params[:id])
+    @record['status'] = Guru::Config::STATUS_PROGRESS
+    ticket.update(params[:id],@record)
+    alert('Reply successfully sent','green')
+  else
+    alert('Unable to send reply','red')
+  end
+  redirect "/view/ticket/#{params[:ticket_id]}"
 end
