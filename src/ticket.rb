@@ -13,6 +13,9 @@ module Guru
         'priority',
         'description',
         'status',
+        'user',
+        'created_at',
+        'uid',
       ]
     end
 
