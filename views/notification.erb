@@ -2,25 +2,22 @@
 <div class="row">
   <h4>Notifications</h4>
 </div>
-
 <div class="row">
   <ul class="collection">
+<% 
+  if Guru::Access.admin? session[:role]
+    notifications = Guru::Notification.list
+  else
+    notifications = Guru::Notification.search('uid',session[:uid])
+  end
+  
+  notifications.each{|id,records| %>
     <li class="collection-item avatar">
       <img src="images/user.jpg" alt="" class="circle">
-      <span class="title">Nwuguru Sunday</span>
-      <p> replied your ticke "Unable to eat food"</p>
+      
+      <p><%= records['comment'] %></p>
     </li>
-    <li class="collection-item avatar">
-      <img src="images/user.jpg" alt="" class="circle">
-      <span class="title">Nwuguru Sunday</span>
-      <p> replied your ticke "Unable to eat food"</p>
-    </li>
-    <li class="collection-item avatar">
-      <img src="images/user.jpg" alt="" class="circle">
-      <span class="title">Nwuguru Sunday</span>
-      <p> replied your ticke "Unable to eat food"</p>
-    </li>
-    
+<%  } %>
   </ul>
 </div>
 </div>
