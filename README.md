@@ -36,4 +36,5 @@
 <li>Social Login</li>
 <li>Pagination to data list</li>
 <li>Role and permission manager</li>
+<li>Preloader when a background process is running</li>
 </ol>
