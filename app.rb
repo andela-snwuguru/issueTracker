@@ -1,3 +1,4 @@
+require 'rack'
 require 'sinatra'
 require 'firebase'
 require 'json'
