@@ -7,8 +7,10 @@
 <% 
   if Guru::Access.admin? session[:role]
     notifications = Guru::Notification.list
-  else
+  elsif Guru::Access.customer? session[:role]
     notifications = Guru::Notification.search('uid',session[:uid])
+  else
+    notifications = Guru::Notification.search('department',session[:department])
   end
   
   notifications.each{|id,records| %>

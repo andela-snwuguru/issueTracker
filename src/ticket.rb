@@ -50,6 +50,7 @@ module Guru
       end
       false
     end
+
     def self.list
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch('ticket')
@@ -59,6 +60,33 @@ module Guru
     def self.search key, value
       result = Ticket.list
       result.select{|id,record| record[key] == value}
+    end
+
+    def self.searchMultiple key, value, key2,value2
+      result = Ticket.list
+      result.select{|id,record| record[key] == value && record[key2] == value2}
+    end
+
+    def self.total session
+      if Guru::Access.admin? session[:role]
+        tickets = Ticket.list
+      elsif Guru::Access.customer? session[:role]
+        tickets = Ticket.search('uid', session[:uid]) 
+      else
+        tickets = Ticket.search('department',session[:department])
+      end
+      tickets ? tickets.length : 0
+    end
+
+    def self.total_by_status session, status
+      if Guru::Access.admin? session[:role]
+        tickets = Ticket.search('status', status) 
+      elsif Guru::Access.customer? session[:role]
+        tickets = Ticket.searchMultiple('uid', session[:uid],'status', status) 
+      else
+        tickets = Ticket.searchMultiple('department',session[:department],'status', status)
+      end
+      tickets ? tickets.length : 0
     end
 
     private

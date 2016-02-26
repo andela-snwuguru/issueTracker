@@ -20,6 +20,18 @@ module Guru
       result ? result : {}
     end
 
+    def self.total session
+      if Guru::Access.admin? session[:role]
+        notifications = Notification.list
+      elsif Guru::Access.customer? session[:role]
+        notifications = Notification.search('uid',session[:uid])
+      else
+        notifications = Guru::Notification.search('department',session[:department])
+      end
+      notifications ? notifications.length : 0
+    end
+
+
   end
 
 end

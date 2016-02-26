@@ -31,6 +31,12 @@ module Guru
       result ? result : {}
     end
 
+    def self.total
+      @fb = Guru::FirebaseUtil.new
+      result = @fb.fetch('department')
+      result ? result.length : 0
+    end
+
     def self.list_data
       result = self.list
       data = {}

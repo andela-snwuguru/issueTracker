@@ -234,6 +234,7 @@ post '/reply' do
     notification_record = {
       'comment' => "#{name} replied your ticket (<a href='/view/ticket/#{params[:ticket_id]}'>#{@record['title']}</a>)",
       'uid' => @record['uid'],
+      'department' => @record['department'],
     }
     ticket.update(params[:ticket_id],@record)
     Guru::Notification.create(notification_record)

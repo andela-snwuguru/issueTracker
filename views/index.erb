@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-content  green white-text">
                 <p class="card-stats-title"><i class="material-icons">contacts</i> Departments</p>
-                <h4 class="card-stats-number">566</h4>
+                <h4 class="card-stats-number"><%= Guru::Department.total %></h4>
                 
             </div>
             
@@ -15,7 +15,7 @@
         <div class="card">
             <div class="card-content purple white-text">
                 <p class="card-stats-title"><i class="material-icons">error_outline</i> Total Tickets</p>
-                <h4 class="card-stats-number">800</h4>
+                <h4 class="card-stats-number"><%= Guru::Ticket.total session %></h4>
                 
             </div>
             
@@ -26,7 +26,7 @@
         <div class="card">
             <div class="card-content blue-grey white-text">
                 <p class="card-stats-title"><i class="material-icons">warning</i> Unresolved Issues</p>
-                <h4 class="card-stats-number">200</h4>
+                <h4 class="card-stats-number"><%= Guru::Ticket.total_by_status(session,Guru::Config::STATUS_PENDING) %></h4>
             </div>
            
         </div>
@@ -37,7 +37,7 @@
         <div class="card">
             <div class="card-content pink lighten-2 white-text">
                 <p class="card-stats-title"><i class="material-icons">speaker_notes</i> Notification</p>
-                <h4 class="card-stats-number">20</h4>
+                <h4 class="card-stats-number"><%= Guru::Notification.total session %></h4>
             </div>
         </div>
     </div>
@@ -88,8 +88,10 @@
       <% 
           if Guru::Access.admin? session[:role]
             notifications = Guru::Notification.list
-          else
+          elsif Guru::Access.customer? session[:role]
             notifications = Guru::Notification.search('uid',session[:uid])
+          else
+            notifications = Guru::Notification.search('department',session[:department])
           end
           
           notifications.each{|id,records| %>
