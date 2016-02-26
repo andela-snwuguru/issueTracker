@@ -45,29 +45,66 @@
 </div>
 
 <div class="row">
- <div class="s12 m12">
+ <div class="col s6 m6">
   <ul id="task-card" class="collection with-header">
       <li class="collection-header teal white-text">
           <h4 class="task-card-title">Latest Tickets</h4>
       </li>
+      <% 
+        if Guru::Access.admin? session[:role]
+          tickets = Guru::Ticket.list
+        elsif Guru::Access.customer? session[:role]
+          tickets = Guru::Ticket.search('uid', session[:uid]) 
+        else
+          tickets = Guru::Ticket.search('department',session[:department])
+        end
+        count = 0
+        tickets.each{|id,records| %>
       <li class="collection-item">
           
-          <label for="task1" style="text-decoration: none;">Create Mobile App UI. <a href="#" class="secondary-content"><span class="ultra-small"><i class="material-icons">visibility</i></span></a>
+          <label for="task1" style="text-decoration: none;"><%= records['title'] %>
+          <a href="/view/ticket/<%= id %>" class="secondary-content"><span class="ultra-small"><i class="material-icons">visibility</i></span></a>
           </label>
-          <span class="task-cat grey pad">Success</span>
-          <span class="task-cat orange pad">Low</span>
-      </li>
+          <span class="chip grey pad lighten-2"><%= records['department'] %></span>
+          <span class="chip <%= Guru::Config.priority_color(records['priority']) %> pad lighten-2"><%= records['priority'] %></span>
+          <span class="chip <%= Guru::Config.status_color(records['status']) %> pad lighten-2"><%= records['status'] %></span>
 
-      <li class="collection-item">
-          <label for="task1" style="text-decoration: none;">Create Mobile App UI. 
-          <a href="#" class="secondary-content"><span class="ultra-small"><i class="material-icons">visibility</i></span></a>
-          </label>
-          <span class="task-cat grey pad">Recruitment</span>
-          <span class="task-cat red pad">High</span>
       </li>
+      <% count += 1 
+        if count > 9
+          break
+        end
+      } %>
       
   </ul>
 </div>
 
+
+ <div class="col s6 m6">
+  <ul id="task-card" class="collection with-header">
+      <li class="collection-header pink white-text">
+          <h4 class="task-card-title">Notication</h4>
+      </li>
+      <% 
+          if Guru::Access.admin? session[:role]
+            notifications = Guru::Notification.list
+          else
+            notifications = Guru::Notification.search('uid',session[:uid])
+          end
+          
+          notifications.each{|id,records| %>
+            <li class="collection-item avatar">
+            <img src="images/user.jpg" alt="" class="circle">
+            
+            <p><%= records['comment'] %></p>
+          </li>
+      <% count += 1 
+        if count > 9
+          break
+        end
+      } %>
+      
+  </ul>
+</div>
 </div>
 </div>
