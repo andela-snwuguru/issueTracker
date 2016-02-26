@@ -13,6 +13,7 @@ require_relative 'src/authentication'
 require_relative 'src/material_html'
 require_relative 'src/firebase_util'
 require_relative 'src/department'
+require_relative 'src/notification'
 require_relative 'src/ticket'
 require_relative 'src/ticket_reply'
 require_relative 'src/user'
@@ -228,9 +229,13 @@ post '/reply' do
   if ticket_reply.create({uid: session[:uid],user:session[:name]},params[:ticket_id],params[:comment])
     ticket = Guru::Ticket.new
     @record = ticket.get(params[:ticket_id])
-    p @record
     @record['status'] = Guru::Config::STATUS_PROGRESS
+    notification_record = {
+      'comment' => "#{session[:name]} has replied your ticket (<a href='/view/ticket/#{params[:ticket_id]}'>#{@record[:title]}</a>)",
+      'uid' => session[:uid],
+    }
     ticket.update(params[:ticket_id],@record)
+    Guru::Notification.create(notification_record)
     alert('Reply successfully sent','green')
   else
     alert('Unable to send reply','red')
