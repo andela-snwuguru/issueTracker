@@ -30,16 +30,21 @@
 
       <% 
         replies = Guru::TicketReply.list(@record['id'])
-        replies.each{|id,records| %>
+        replies.each{|id,records|  %>
           <div class="row" style="padding-left:20px">
-          <div class="chip cyan lighten-2">
+
+          <div class="chip cyan lighten-2 <%= session[:uid] == records['uid'] ? 'right' : '' %>" style="<%= session[:uid] == records['uid'] ? 'margin-right: 20px; margin-top:50px' : '' %>">
             <img src="/images/user.jpg" alt="Contact Person">
-            sunday
+            <%= records['user'] %>
           </div>
-          <div class="talk-bubble tri-right left-top">
+          <div class="talk-bubble tri-right <%= session[:uid] == records['uid'] ? 'right' : 'left' %>-top <%= session[:uid] == records['uid'] ? 'right' : '' %>">
           
             <div class="talktext" style="min-width:300px">
-              <p><%= records['comment'] %> <a href="/reply/<%= @record['id'] %>/<%= id  %>" class="right"> <i class="material-icons">delete</i></a></p>
+              <p><%= records['comment'] %> 
+              <% if ((Guru::Config::STATUS_PENDING == @record['status']) || (Guru::Config::STATUS_PROGRESS == @record['status'])) && session[:uid] == records['uid'] %>
+              <a href="/reply/<%= @record['id'] %>/<%= id  %>" class="right"> <i class="material-icons">delete</i></a>
+<% end %>
+              </p>
             </div>
           </div>
         </div>
@@ -53,7 +58,7 @@
           <div class="talk-bubble tri-right left-top" style="min-width:700px;">
           <div class="chip cyan lighten-2">
             <img src="/images/user.jpg" alt="Contact Person">
-            sunday
+            <%= session[:name] %>
           </div>
             <div class="talktext">
                 <form class="col s12" action="/reply" method="post" id="reply">

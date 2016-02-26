@@ -5,9 +5,11 @@ module Guru
       @fb = Guru::FirebaseUtil.new
     end
 
-    def create ticket_id,comment
+    def create user,ticket_id,comment
       record = {
-        'comment' => comment
+        'comment' => comment,
+        'user' => user[:user],
+        'uid' => user[:uid],
       }
       if @fb.push("ticket_reply/#{ticket_id}",record)
         return true
@@ -27,13 +29,6 @@ module Guru
       result ? result : {}
     end
 
-    def update id, data
-      record = get_data data
-      if @fb.set("ticket_reply/#{id}",record)
-        return true
-      end
-      false
-    end
     def self.list ticket_id
       @fb = Guru::FirebaseUtil.new
       result = @fb.fetch("ticket_reply/#{ticket_id}")
