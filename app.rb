@@ -231,8 +231,8 @@ post '/reply' do
     @record = ticket.get(params[:ticket_id])
     @record['status'] = Guru::Config::STATUS_PROGRESS
     notification_record = {
-      'comment' => "#{session[:name]} has replied your ticket (<a href='/view/ticket/#{params[:ticket_id]}'>#{@record[:title]}</a>)",
-      'uid' => session[:uid],
+      'comment' => "#{session[:name]} has replied your ticket (<a href='/view/ticket/#{params[:ticket_id]}'>#{@record['title']}</a>)",
+      'uid' => @record['uid'],
     }
     ticket.update(params[:ticket_id],@record)
     Guru::Notification.create(notification_record)
