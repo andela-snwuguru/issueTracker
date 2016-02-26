@@ -6,13 +6,13 @@
       <div class="row">
       
         <form class="col s12" action="/ticket" method="post">
-         <%= Guru::MaterialHtml::input_field('text','title','Title','',{'required'=>'required'}) %>
+         <%= Guru::MaterialHtml::input_field('text','title','Title','',{'required'=>'required','class'=>'animated bounceInRight'}) %>
          
-         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department'}) %>
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department','class'=>'animated bounceInLeft'}) %>
 
          <%= Guru::MaterialHtml::select('priority','Priority',Guru::Config.priority,'',{'prompt'=>'Select Priority'}) %>
 
-         <%= Guru::MaterialHtml::text_area('description','Issue Description','',{'required'=>'required'}) %>
+         <%= Guru::MaterialHtml::text_area('description','Issue Description','',{'required'=>'required','class'=>'animated bounceInRight'}) %>
 
          <%= Guru::MaterialHtml::submit('Create','',{'class'=>'right'}) %>
         </form>

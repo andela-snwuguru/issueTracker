@@ -10,13 +10,13 @@
         
         <%= Guru::MaterialHtml::input_field('hidden','action','','update') %> 
 
-        <%= Guru::MaterialHtml::input_field('text','name','Name',@record['name'],{'required'=>'required','icon'=>'account_circle'}) %>     
+        <%= Guru::MaterialHtml::input_field('text','name','Name',@record['name'],{'required'=>'required','icon'=>'account_circle','class'=>'animated bounceInRight'}) %>     
 
-        <%= Guru::MaterialHtml::input_field('text','location','Location',@record['location'],{'required'=>'required','icon'=>'my_location'}) %>
+        <%= Guru::MaterialHtml::input_field('text','location','Location',@record['location'],{'required'=>'required','icon'=>'my_location','class'=>'animated bounceInLeft'}) %>
 
         <%= Guru::MaterialHtml::input_field('hidden','email','',@record['email']) %>
 
-         <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,@record['role'],{'prompt'=>'Select Role'}) %>
+         <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,@record['role'],{'prompt'=>'Select Role','class'=>'animated bounceInRight'}) %>
 
          <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,@record['department'],{'prompt'=>'Select Department'}) %>
 

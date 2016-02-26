@@ -10,19 +10,19 @@
         
         <%= Guru::MaterialHtml::input_field('hidden','action','','create') %> 
 
-        <%= Guru::MaterialHtml::input_field('text','name','Name','',{'required'=>'required','icon'=>'account_circle'}) %>     
+        <%= Guru::MaterialHtml::input_field('text','name','Name','',{'required'=>'required','icon'=>'account_circle' ,'class'=>'animated bounceInRight'}) %>     
 
-        <%= Guru::MaterialHtml::input_field('text','location','Location','',{'required'=>'required','icon'=>'my_location'}) %>
+        <%= Guru::MaterialHtml::input_field('text','location','Location','',{'required'=>'required','icon'=>'my_location' ,'class'=>'animated bounceInLeft'}) %>
 
-        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email'}) %>
+        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email' ,'class'=>'animated bounceInRight'}) %>
 
-        <%= Guru::MaterialHtml::input_field('password','password','Password','',{'required'=>'required','icon'=>'vpn_key'}) %>
-
-
-         <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,'',{'prompt'=>'Select Role'}) %>
+        <%= Guru::MaterialHtml::input_field('password','password','Password','',{'required'=>'required','icon'=>'vpn_key' ,'class'=>'animated bounceInLeft'}) %>
 
 
-         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department'}) %>
+         <%= Guru::MaterialHtml::select('role','Role',Guru::Config.roles,'',{'prompt'=>'Select Role' ,'class'=>'animated fadeIn'}) %>
+
+
+         <%= Guru::MaterialHtml::select('department','Department',Guru::Department.list_data,'',{'prompt'=>'Select Department','class'=>'animated fadeIn'}) %>
 
         <%= Guru::MaterialHtml::submit('Create User','',{'class'=>'waves-effect waves-light right'}) %>
       </div>

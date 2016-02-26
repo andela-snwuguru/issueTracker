@@ -7,15 +7,15 @@
     <form class="col s12" method="post" id="signup">
       <div class="row">
         <p class="alert white-text lighten-2" style="text-align:left; display:none;"></p>
-        <%= Guru::MaterialHtml::input_field('text','name','Name','',{'required'=>'required','icon'=>'account_circle'}) %>     
+        <%= Guru::MaterialHtml::input_field('text','name','Name','',{'required'=>'required','icon'=>'account_circle','class'=>'animated bounceInRight'}) %>     
 
-        <%= Guru::MaterialHtml::input_field('text','location','Location','',{'required'=>'required','icon'=>'my_location'}) %>
+        <%= Guru::MaterialHtml::input_field('text','location','Location','',{'required'=>'required','icon'=>'my_location','class'=>'animated bounceInLeft'}) %>
 
-        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email'}) %>
+        <%= Guru::MaterialHtml::input_field('email','email','Email','',{'required'=>'required','icon'=>'email','class'=>'animated bounceInRight'}) %>
 
-      <%= Guru::MaterialHtml::input_field('password','password','Password','',{'required'=>'required','icon'=>'vpn_key'}) %>
+      <%= Guru::MaterialHtml::input_field('password','password','Password','',{'required'=>'required','icon'=>'vpn_key','class'=>'animated bounceInLeftt'}) %>
 
-      <%= Guru::MaterialHtml::input_field('password','confirm_password','Confirm Password','',{'required'=>'required','icon'=>'vpn_key'}) %>
+      <%= Guru::MaterialHtml::input_field('password','confirm_password','Confirm Password','',{'required'=>'required','icon'=>'vpn_key','class'=>'animated bounceInRight'}) %>
 
         <div class="input-field">
           <p>Already a member? <a href="/auth/login">click here to login</a></p>
