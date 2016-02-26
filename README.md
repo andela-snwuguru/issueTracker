@@ -2,7 +2,12 @@
 <p>Final project in Andela bootcamp XV</p>
 
 <h3>Quality Assurance</h3>
-<p>badge here</p>
+<p>
+<a href="https://codeclimate.com/github/mightys/issueTracker"><img src="https://codeclimate.com/github/mightys/issueTracker/badges/gpa.svg" /></a>
+
+<a href="https://codeclimate.com/github/mightys/issueTracker/coverage"><img src="https://codeclimate.com/github/mightys/issueTracker/badges/coverage.svg" /></a>
+<a href="https://codeclimate.com/github/mightys/issueTracker"><img src="https://codeclimate.com/github/mightys/issueTracker/badges/issue_count.svg" /></a>
+</p>
 
 <h3>Description</h3>
 <p>
