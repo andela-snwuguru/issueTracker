@@ -17,6 +17,8 @@ index e69de29..7df7973 100644
 +      - javascript
 +      - python
 +      - php
+exclude_paths:
+- "public/styles/animate.css"
  checks:
       Similar code:
         enabled: false
