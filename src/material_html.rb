@@ -93,7 +93,7 @@ module Guru
     end
 
     def self.get_table_footer(footer)
-     ''
+     footer
     end
 
     def self.get_table_data(data,action_buttons)
@@ -128,7 +128,7 @@ module Guru
         end
 
         response << "<option value='#{key}'"
-         if key == default_value
+        if key == default_value
           response << ' selected'
         end
         response << "> #{value}</option>"
