@@ -52,7 +52,7 @@ $(document).ready(function() {
     var name = form.name.value
     var location = form.location.value
     var role = 'Customer'
-    if(password != confirm_password){
+    if(password !== confirm_password){
       Util.alert('Password mismatch!','red')
       return false
     }
@@ -107,7 +107,7 @@ function login(){
   email = $('#email').val()
   password = $('#password').val()
 
-  if(email.length == 0 || password.length == 0){
+  if(email.length === 0 || password.length === 0){
     Util.alert('Email or Password cannot be blank','red')
     return
   }
